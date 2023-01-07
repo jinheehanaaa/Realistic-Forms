@@ -1,0 +1,62 @@
+import 'package:flutter/material.dart';
+import '../components/default_app_bar.dart';
+import '../models/user.dart';
+
+class HomeMaterial extends StatefulWidget {
+  @override
+  _HomeMaterialState createState() => _HomeMaterialState();
+}
+
+class _HomeMaterialState extends State<HomeMaterial> {
+  final _formKey = GlobalKey<FormState>();
+  final _user = User();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: DefaultAppBar(title: Text('Profile')),
+        body: Stack(children: [
+          _renderName(context, location),
+          _renderSubscribe(context, location),
+          _renderInterest(context, location),
+          _renderSaveButton(context, location),
+        ]));
+  }
+
+// renderBody:
+
+// Subscribe
+
+  Widget _renderBody(BuildContext context, Location location) {
+    var result = <Widget>[];
+    result.add(Container(); // padding & child?
+    result.add(SwitchListTile()); // title, value, onChanged?
+    return SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: result));
+
+/*
+                          Container(
+                            padding: const EdgeInsets.fromLTRB(0, 50, 0, 20),
+                            child: Text('Subscribe'),
+                          ),
+                          SwitchListTile(
+                              title: const Text('Monthly Newsletter'),
+                              value: _user.newsletter,
+                              onChanged: (bool val) =>
+                                  setState(() => _user.newsletter = val)),
+ */
+
+            
+  }
+
+
+// renderbutton
+
+  _showDialog(BuildContext context) {
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text('Submitting form')));
+  }
+}
